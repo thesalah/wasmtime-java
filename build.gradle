@@ -54,17 +54,20 @@ test {
 }
 
 static def jniLibOsClassifier() {
-    def os = System.getProperty("os.name").toLowerCase()
-    if (os.contains("linux")) {
-        return "linux"
+    def os = System.getenv("JNILIB_RUST_TARGET")
+    if (os.contains("ubuntu")) {
+        return "ubuntu"
     }
-    if (os.contains("mac os") || os.contains("darwin")) {
+    if (os.contains("alpine")) {
+        return "alpine"
+    }
+    if (os.contains("macos") || os.contains("darwin")) {
         return "macos"
     }
     if (os.contains("windows")){
         return "windows"
     }
-    throw new RuntimeException("platform not supported: " + System.getProperty("os.name"))
+    throw new RuntimeException("platform not supported: " + os)
 }
 
 static def rustTargetTriple() {
