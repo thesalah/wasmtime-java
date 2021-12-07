@@ -54,7 +54,7 @@ test {
 }
 
 static def jniLibOsClassifier() {
-    def os = System.getenv("JNILIB_RUST_TARGET")
+    def os = System.getenv("OS_NAME")
     if (os.contains("ubuntu")) {
         return "ubuntu"
     }
